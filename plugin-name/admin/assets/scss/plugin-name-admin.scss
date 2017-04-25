@@ -1,0 +1,14 @@
+// compileCompressed: ../css/$1.css
+
+/*!
+ * Plugin:	Plugin Name
+ * URL:		https://example.com
+ * Name:	plugin-name-admin.css
+ */
+
+// Common and Vendors
+@import "vendor/bourbon/bourbon";
+@import "variables";
+@import "mixins";
+
+@import "modules/_base";

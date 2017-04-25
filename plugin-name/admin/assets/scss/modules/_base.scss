@@ -1,0 +1,258 @@
+// main: ../plugin-name-admin.scss
+
+.plugin-name-wrap-settings {
+    max-width: 80%;
+
+    .plugin-name-tab-wrapper {
+        float: left;
+
+        width: 200px;
+        margin-top: 20px !important;
+        margin-right: -1px !important;
+
+        a {
+            font-size: 16px;
+
+            display: block;
+
+            box-sizing: border-box;
+            padding: 11px 30px 11px 15px;
+
+            white-space: nowrap;
+            text-decoration: none;
+
+            color: #333;
+            border: 1px solid transparent;
+            border-right: 0;
+            border-radius: 3px 0 0 3px;
+            outline: none;
+            box-shadow: none;
+
+            .dashicons {
+                margin-right: 10px;
+
+                color: #575758;
+            }
+
+            &.active {
+                font-weight: 600;
+
+                border-color: #ddd;
+                background: #fff;
+            }
+        }
+
+        .button-primary {
+            font-size: 16px;
+            line-height: 1;
+
+            display: block;
+
+            height: auto;
+            margin: 20px auto;
+            padding: 10px 20px;
+
+            border-radius: 4px;
+        }
+    }
+
+    .nav-tab-active,
+    .nav-tab-active:hover,
+    .nav-tab-active:focus,
+    .nav-tab-active:focus:active {
+        background: #fff;
+    }
+
+    .cmb-form {
+        overflow: hidden;
+
+        > .button-primary {
+            display: none;
+        }
+    }
+
+    .cmb2-wrap {
+        box-sizing: border-box;
+        min-height: 400px;
+        margin-bottom: 20px;
+        padding: 30px;
+
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: #fff;
+
+		.cmb2-metabox {
+			.cmb-row:not(.cmb-type-title):first-of-type {
+				padding-top: 0
+			}
+
+			.cmb-row:not(.cmb-type-title):last-of-type {
+				padding-bottom: 0
+			}
+		}
+    }
+
+    .cmb-row {
+        padding: 25px 0;
+
+        border-bottom: 1px dashed #ddd;
+
+        .cmb-th,
+        .cmb-td {
+            box-sizing: border-box;
+            padding: 0 15px;
+        }
+
+        .cmb-th {
+            width: 20%;
+            max-width: 200px;
+            padding: 0 15px;
+
+            label {
+                padding: 10px 0 0;
+            }
+        }
+
+        .cmb-td {
+            width: 80%;
+            padding: 0 20px;
+        }
+
+        p.cmb2-metabox-description {
+            font-size: 12px;
+
+            padding-top: .4em;
+
+            color: #888;
+        }
+
+        input[type=text],
+        textarea,
+        select {
+            display: block;
+
+            padding: .5em .6em;
+
+            -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+                    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+            border-radius: 3px;
+            background: #fff !important;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,.1) !important;
+        }
+
+        select {
+            height: auto;
+			min-width: 200px;
+			max-width: 350px;
+            padding: .35em .6em;
+        }
+
+		&.cmb-type-title-next {
+			border: 0;
+			margin-bottom: 15px;
+		}
+    }
+
+    .cmb-row.cmb-type-file {
+        .regular-text {
+            display: inline-block;
+
+            margin-right: 0;
+
+            + .button {
+                font-weight: 700;
+
+                height: 35px;
+                margin-top: 1px;
+                margin-left: -3px;
+
+                color: #fff;
+                border-color: #0073aa #006799 #006799;
+                border-radius: 0 3px 3px 0;
+                background: lighten( #0085ba, 6% );
+            }
+        }
+    }
+
+    .cmb-type-title {
+        padding: 5px 10px;
+
+        border: 0;
+        border-radius: 3px;
+        background: #f1f1f1;
+
+        .cmb-td {
+            padding: 0;
+        }
+        .cmb2-metabox-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+    }
+
+    /* Radio Button*/
+    .cmb2-wrap .cmb2-radio-list {
+        position: relative;
+
+        display: inline-block;
+
+        padding: 0;
+
+        vertical-align: middle;
+
+        @include clearfix;
+
+        li {
+            float: left;
+
+            margin: 0;
+            padding: 0;
+
+            &:first-child label {
+                border-radius: 3px 0 0 3px;
+            }
+            &:last-child label {
+                border-radius: 0 3px 3px 0;
+            }
+        }
+
+        input {
+            display: none;
+        }
+
+        label {
+            line-height: 31px;
+
+            display: inline-block;
+
+            box-sizing: border-box;
+            height: 33px;
+            padding: 0 12px 2px;
+
+            cursor: pointer;
+            vertical-align: top;
+            white-space: nowrap;
+
+            color: #555;
+            border: 1px solid #ccc;
+            background: #f7f7f7;
+            box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba( #000, .08 );
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        input:checked + label {
+            margin-right: -1px;
+
+            text-decoration: none;
+
+            color: #fff;
+            border-color: #0073aa #006799 #006799;
+            background: lighten( #0085ba, 6% );
+            box-shadow: inset 0 1px 3px #006799;
+        }
+    }
+}
