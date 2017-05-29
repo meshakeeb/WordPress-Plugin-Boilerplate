@@ -26,7 +26,7 @@ class Plugin_Name_Admin extends Plugin_Name_Base {
 		$this->hooks();
 
 		// For developers to hook
-		plugin_slug_action( 'admin_loaded' );
+		_plugin_name_action( 'admin_loaded' );
 	}
 
 	/**
@@ -65,7 +65,7 @@ class Plugin_Name_Admin extends Plugin_Name_Base {
 		$screen = get_current_screen();
 		$pages = array(
 			'toplevel_page_plugin-name',
-			'plugin-name_page_plugin-name-settings'
+			'plugin-name_page_plugin-name-settings',
 		);
 
 		if ( ! in_array( $screen->id, $pages ) ) {
@@ -86,16 +86,16 @@ class Plugin_Name_Admin extends Plugin_Name_Base {
 	private function register_pages() {
 
 		// Welcome / About
-		new Plugin_Name_Admin_Page( 'plugin-name', esc_html__( 'Plugin Name', 'plugin-name' ), array(
-			'position' => 30,
-			'render' => plugin_name()->admin_dir() . 'views/welcome.php'
+		new Plugin_Name_Admin_Page( 'plugin-name', esc_html__( 'Plugin Name', '_plugin_name' ), array(
+			'position'	=> 30,
+			'render'	=> plugin_name()->admin_dir() . 'views/welcome.php',
 		));
 
 		// Setting
-		new Plugin_Name_Admin_Page( 'plugin-name-settings', esc_html__( 'Settings', 'plugin-name' ), array(
-			'parent' => 'plugin-name',
-			'position' => 30,
-			'render' => plugin_name()->admin_dir() . 'views/settings.php'
+		new Plugin_Name_Admin_Page( 'plugin-name-settings', esc_html__( 'Settings', '_plugin_name' ), array(
+			'parent'	=> 'plugin-name',
+			'position'	=> 30,
+			'render'	=> plugin_name()->admin_dir() . 'views/settings.php',
 		));
 	}
 }

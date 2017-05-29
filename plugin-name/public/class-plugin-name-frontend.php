@@ -20,7 +20,7 @@ class Plugin_Name_Frontend extends Plugin_Name_Base {
 		$this->hooks();
 
 		// For developers to hook
-		plugin_slug_action( 'frontend_loaded' );
+		_plugin_name_action( 'frontend_loaded' );
 	}
 
 	/**

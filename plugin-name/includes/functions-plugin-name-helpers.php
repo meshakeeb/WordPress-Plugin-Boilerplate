@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @return bool
  */
-function plugin_name_str_start_with( $needle, $haystack ) {
+function _plugin_name_str_start_with( $needle, $haystack ) {
 	return substr_compare( $haystack, $needle, 0, strlen( $needle ) ) === 0;
 }
 
@@ -37,7 +37,7 @@ function plugin_name_str_start_with( $needle, $haystack ) {
  *
  * @return bool
  */
-function plugin_name_str_contains( $needle, $haystack ) {
+function _plugin_name_str_contains( $needle, $haystack ) {
 	return strpos( $haystack, $needle ) !== false;
 }
 
@@ -47,7 +47,7 @@ function plugin_name_str_contains( $needle, $haystack ) {
  * @param  array 	$attributes
  * @return string
  */
-function plugin_name_attributes( $attributes = array(), $prefix = '' ) {
+function _plugin_name_attributes( $attributes = array(), $prefix = '' ) {
 
 	// If empty return false
 	if ( empty( $attributes ) ) {

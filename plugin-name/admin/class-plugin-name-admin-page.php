@@ -79,11 +79,11 @@ class Plugin_Name_Admin_Page extends Plugin_Name_Base {
 
 		// Check
 		if ( ! $id ) {
-			wp_die( esc_html__( '$id variable required', 'plugin-name' ), esc_html__( 'Variable Required', 'plugin-name' ) );
+			wp_die( esc_html__( '$id variable required', '_plugin_name' ), esc_html__( 'Variable Required', '_plugin_name' ) );
 		}
 
 		if ( ! $title ) {
-			wp_die( esc_html__( '$title variable required', 'plugin-name' ), esc_html__( 'Variable Required', 'plugin-name' ) );
+			wp_die( esc_html__( '$title variable required', '_plugin_name' ), esc_html__( 'Variable Required', '_plugin_name' ) );
 		}
 
 		$this->id    = $id;
@@ -123,15 +123,17 @@ class Plugin_Name_Admin_Page extends Plugin_Name_Base {
 	 */
 	public function register_menu() {
 
-		// Parent Page
 		if ( ! $this->parent ) {
+
+			// Parent Page
 			add_menu_page(
 				$this->title, $this->menu_title, $this->capability, $this->id,
 				array( $this, 'display' ), $this->icon, $this->position
 			);
 
-		// Child Page
 		} else {
+
+			// Child Page
 			add_submenu_page(
 				$this->parent, $this->title, $this->menu_title, $this->capability,
 				$this->id, array( $this, 'display' )
@@ -144,8 +146,8 @@ class Plugin_Name_Admin_Page extends Plugin_Name_Base {
 	 */
 	public function display() {
 
-		plugin_slug_action( 'before_admin_page', $this );
-		plugin_slug_action( 'before_admin_page_' . $this->id, $this );
+		_plugin_name_action( 'before_admin_page', $this );
+		_plugin_name_action( 'before_admin_page_' . $this->id, $this );
 
 		if ( ! is_null( $this->render ) ) {
 
@@ -156,8 +158,8 @@ class Plugin_Name_Admin_Page extends Plugin_Name_Base {
 			}
 		}
 
-		plugin_slug_action( 'admin_page_' . $this->id, $this );
-		plugin_slug_action( 'admin_page', $this );
+		_plugin_name_action( 'admin_page_' . $this->id, $this );
+		_plugin_name_action( 'admin_page', $this );
 	}
 
 	/**
@@ -184,6 +186,6 @@ class Plugin_Name_Admin_Page extends Plugin_Name_Base {
 	protected function is_current_page() {
 
 		$page = isset( $_GET['page'] ) && ! empty( $_GET['page'] ) ? $_GET['page'] : false;
-        return $page === $this->id;
+		return $page === $this->id;
 	}
 }

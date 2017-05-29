@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Include Base Class.
  * From which all other classes are derived.
  */
-include_once dirname( __FILE__ ) . '/includes/class-plugin-slug-base.php';
+include_once dirname( __FILE__ ) . '/includes/class-plugin-name-base.php';
 
 final class Plugin_Name extends Plugin_Name_Base {
 
@@ -107,14 +107,14 @@ final class Plugin_Name extends Plugin_Name_Base {
 	 * Cloning is forbidden.
 	 */
 	public function __clone() {
-		wc_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'plugin-name' ), $this->version );
+		wc_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', '_plugin_name' ), $this->version );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 */
 	public function __wakeup() {
-		wc_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'plugin-name' ), $this->version );
+		wc_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', '_plugin_name' ), $this->version );
 	}
 
 	/**
@@ -137,8 +137,7 @@ final class Plugin_Name extends Plugin_Name_Base {
 	/**
 	 * Plugin_Name constructor.
 	 */
-	private function __construct() {
-	}
+	private function __construct() {}
 
 	/**
 	 * Instantiate the plugin.
@@ -167,7 +166,7 @@ final class Plugin_Name extends Plugin_Name_Base {
 		$this->hooks();
 
 		// For developers to hook
-		plugin_slug_action( 'loaded' );
+		_plugin_name_action( 'loaded' );
 	}
 
 	/**
@@ -175,10 +174,12 @@ final class Plugin_Name extends Plugin_Name_Base {
 	 * @return void
 	 */
 	private function autoloader() {
+
 		if ( function_exists( '__autoload' ) ) {
 			spl_autoload_register( '__autoload' );
 		}
-        spl_autoload_register( array( $this, 'autoload' ) );
+
+		spl_autoload_register( array( $this, 'autoload' ) );
 	}
 
 	/**
@@ -194,11 +195,13 @@ final class Plugin_Name extends Plugin_Name_Base {
 
 		// Admin Only
 		if ( is_admin() ) {
+
 			include_once $this->plugin_dir() . 'admin/class-plugin-name-admin.php';
 		}
 
 		// Frontend Only
-		else {
+		if ( ! is_admin() ) {
+
 			include_once $this->plugin_dir() . 'public/class-plugin-name-frontend.php';
 		}
 
@@ -240,12 +243,12 @@ final class Plugin_Name extends Plugin_Name_Base {
 	 */
 	public function autoload( $class ) {
 
-		if ( ! plugin_name_str_start_with( 'Plugin_Name_', $class ) ) {
+		if ( ! _plugin_name_str_start_with( 'Plugin_Name_', $class ) ) {
 			return;
 		}
 
 		$path = $this->plugin_dir() . 'includes/';
-		if ( plugin_name_str_start_with( 'Plugin_Name_Admin', $class ) ) {
+		if ( _plugin_name_str_start_with( 'Plugin_Name_Admin', $class ) ) {
 			$path = $this->admin_dir();
 		}
 
@@ -254,7 +257,7 @@ final class Plugin_Name extends Plugin_Name_Base {
 
 		// Load File
 		$load = $path . $file;
-        if ( $load && is_readable( $load ) ) {
+		if ( $load && is_readable( $load ) ) {
 			include_once $load;
 		}
 	}
@@ -265,15 +268,15 @@ final class Plugin_Name extends Plugin_Name_Base {
 	 */
 	public function load_plugin_textdomain() {
 
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'plugin-name' );
+		$locale = apply_filters( 'plugin_locale', get_locale(), '_plugin_name' );
 
 		load_textdomain(
-			'plugin-name',
+			'_plugin_name',
 			WP_LANG_DIR . '/plugin-name/plugin-name-' . $locale . '.mo'
 		);
 
 		load_plugin_textdomain(
-			'plugin-name',
+			'_plugin_name',
 			false,
 			$this->plugin_dir() . '/languages/'
 		);
@@ -302,7 +305,7 @@ final class Plugin_Name extends Plugin_Name_Base {
 
 		if ( version_compare( get_bloginfo( 'version' ), $this->wordpress_version, '<' ) ) {
 			$this->add_error(
-				sprintf( esc_html__( 'Plugin Name requires WordPress version %s or above. Please update WordPress to run this plugin.', 'plugin-name' ), $this->wordpress_version )
+				sprintf( esc_html__( 'Plugin Name requires WordPress version %s or above. Please update WordPress to run this plugin.', '_plugin_name' ), $this->wordpress_version )
 			);
 			$this->is_critical = true;
 		}
@@ -316,7 +319,7 @@ final class Plugin_Name extends Plugin_Name_Base {
 
 		if ( version_compare( phpversion(), $this->php_version, '<' ) ) {
 			$this->add_error(
-				sprintf( esc_html__( 'Plugin Name requires PHP version %s or above. Please update PHP to run this plugin.', 'plugin-name' ), $this->php_version )
+				sprintf( esc_html__( 'Plugin Name requires PHP version %s or above. Please update PHP to run this plugin.', '_plugin_name' ), $this->php_version )
 			);
 			$this->is_critical = true;
 		}

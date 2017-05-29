@@ -14,7 +14,7 @@ class Plugin_Name_Settings extends Plugin_Name_Base {
 	 * Option key.
 	 * @var string
 	 */
-	private $key =null;
+	private $key = null;
 
 	/**
 	 * Options holder.
@@ -26,7 +26,7 @@ class Plugin_Name_Settings extends Plugin_Name_Base {
 	 * CMB2 option page id.
 	 * @var string
 	 */
-	private $cmb_id =null;
+	private $cmb_id = null;
 
 	/**
 	 * CMB2 metabox
@@ -80,7 +80,7 @@ class Plugin_Name_Settings extends Plugin_Name_Base {
 		include_once( plugin_name()->admin_dir() . 'settings/' . $active . '.php' );
 
 		cmb2_metabox_form( $this->cmb_id, $this->key, array(
-			'save_button' => esc_html__( 'Save Changes', 'plugin-name' ),
+			'save_button' => esc_html__( 'Save Changes', '_plugin_name' ),
 		) );
 	}
 
@@ -113,7 +113,7 @@ class Plugin_Name_Settings extends Plugin_Name_Base {
 			return;
 		}
 
-		add_settings_error( $this->key . '-notices', '', esc_html__( 'Settings updated.', 'plugin-name' ), 'updated' );
+		add_settings_error( $this->key . '-notices', '', esc_html__( 'Settings updated.', '_plugin_name' ), 'updated' );
 		settings_errors( $this->key . '-notices' );
 	}
 
@@ -123,9 +123,9 @@ class Plugin_Name_Settings extends Plugin_Name_Base {
 	 */
 	private function get_tabs() {
 
-		return plugin_slug_filter( 'admin_setting_tabs',
+		return _plugin_name_filter( 'admin_setting_tabs',
 			array(
-				'general' => '<span class="dashicons dashicons-image-filter"></span>' . esc_html__( 'General', 'plugin-name' ),
+				'general' => '<span class="dashicons dashicons-image-filter"></span>' . esc_html__( 'General', '_plugin_name' ),
 			)
 		);
 	}
